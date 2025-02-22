@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glitch Merch Store</title>
+    <style>
+        body {
+            background: black;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+        .glitch {
+            font-size: 3em;
+            font-weight: bold;
+            position: relative;
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #00ff00; }
+            50% { text-shadow: -2px -2px #007700; }
+            100% { text-shadow: 2px 2px #00ff00; }
+        }
+        .gallery img {
+            width: 200px;
+            margin: 10px;
+            border: 2px solid #00ff00;
+        }
+        .store-item {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="glitch">PAINT.EXE MERCH</h1>
+    <p>Edgy, raw, and digital chaos on fabric & collectibles.</p>
+    
+    <section class="gallery">
+        <h2>Art Preview</h2>
+        <img src="art1.jpg" alt="Art Piece 1">
+        <img src="art2.jpg" alt="Art Piece 2">
+    </section>
+    
+    <section class="store">
+        <h2>Shop</h2>
+        <div class="store-item">T-Shirt - $30</div>
+        <div class="store-item">Hoodie - $50</div>
+    </section>
+    
+    <section class="story-cards">
+        <h2>Every piece has a story.</h2>
+        <p>Each item comes with a **collectible story card** unveiling the twisted, glitch-ridden world behind the art.</p>
+    </section>
+    
+    <footer>
+        <p>Follow us: [Instagram] [Twitter] [TikTok]</p>
+    </footer>
+</body>
+</html>
