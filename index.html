@@ -10,27 +10,57 @@
             color: #00ff00;
             font-family: 'Courier New', monospace;
             text-align: center;
+            margin: 0;
         }
         .glitch {
-            font-size: 3em;
+            font-size: 5em;
             font-weight: bold;
-            position: relative;
-            animation: glitch 1s infinite;
+            animation: glitch 2s infinite;
         }
         @keyframes glitch {
             0% { text-shadow: 2px 2px #00ff00; }
-            50% { text-shadow: -2px -2px #007700; }
+            25% { text-shadow: -2px -2px #007700; }
+            50% { text-shadow: 2px -2px #00ff00; }
+            75% { text-shadow: -2px 2px #007700; }
             100% { text-shadow: 2px 2px #00ff00; }
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
         }
         .gallery img {
             width: 200px;
-            margin: 10px;
             border: 2px solid #00ff00;
         }
         .store-item {
             margin: 20px;
             padding: 10px;
             border: 1px solid #00ff00;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .store-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #00ff00;
+        }
+        button {
+            background: #00ff00;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #007700;
+        }
+        footer a {
+            color: #00ff00;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-shadow: 0 0 5px #00ff00;
         }
     </style>
 </head>
@@ -40,23 +70,33 @@
     
     <section class="gallery">
         <h2>Art Preview</h2>
-        <img src="art1.jpg" alt="Art Piece 1">
-        <img src="art2.jpg" alt="Art Piece 2">
+        <img src="/images/art1.jpg" alt="Art Piece 1">
+        <img src="/images/art2.jpg" alt="Art Piece 2">
     </section>
     
     <section class="store">
         <h2>Shop</h2>
-        <div class="store-item">T-Shirt - $30</div>
-        <div class="store-item">Hoodie - $50</div>
+        <div class="store-item">
+            T-Shirt - $30
+            <button onclick="window.location.href='https://your-store-link.com'">Buy Now</button>
+        </div>
+        <div class="store-item">
+            Hoodie - $50
+            <button onclick="window.location.href='https://your-store-link.com'">Buy Now</button>
+        </div>
     </section>
     
     <section class="story-cards">
         <h2>Every piece has a story.</h2>
-        <p>Each item comes with a **collectible story card** unveiling the twisted, glitch-ridden world behind the art.</p>
+        <p>Each item comes with a <b>collectible story card</b> unveiling the twisted, glitch-ridden world behind the art.</p>
     </section>
     
     <footer>
-        <p>Follow us: [Instagram] [Twitter] [TikTok]</p>
+        <p>Follow us: 
+            <a href="https://instagram.com">Instagram</a>
+            <a href="https://twitter.com">Twitter</a>
+            <a href="https://tiktok.com">TikTok</a>
+        </p>
     </footer>
 </body>
 </html>
