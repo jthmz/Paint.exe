@@ -27,7 +27,7 @@
             flex-direction: column;
             justify-content: center; /* Center vertically */
             align-items: center; /* Center horizontally */
-            overflow: hidden; /* Prevent scrollbars */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
 
         canvas {
@@ -79,7 +79,7 @@
             border: 3px solid #0f0; /* Match Matrix green */
             border-radius: 15px; /* Larger radius for modern look */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            max-width: 400px; /* Increased width for larger thumbnails */
+            max-width: 500px; /* Increased width for larger thumbnails */
             width: 100%;
             margin-bottom: 30px; /* Space between items */
             display: flex;
@@ -102,8 +102,8 @@
         .tshirt-mockup {
             position: relative;
             margin: 20px auto;
-            width: 300px; /* Larger T-shirt mockup */
-            height: 375px; /* Proportional height increase */
+            width: 400px; /* Larger T-shirt mockup */
+            height: 500px; /* Proportional height increase */
         }
 
         .tshirt-shape {
@@ -191,8 +191,8 @@
             }
 
             .tshirt-mockup {
-                width: 200px; /* Smaller on mobile but still visible */
-                height: 250px;
+                width: 300px; /* Smaller on mobile but still visible */
+                height: 375px;
             }
 
             .store-item {
@@ -230,7 +230,7 @@
         <div class="store-item">
             <div class="tshirt-mockup">
                 <div class="tshirt-shape"></div>
-                <img src="/images/standard t/Sean king lord.jpg" alt="Sean King Lord T-Shirt" class="tshirt-art">
+                <img src="images/standard t/Sean king lord.jpg" alt="Sean King Lord T-Shirt" class="tshirt-art">
             </div>
             <h3>Sean King Lord T-Shirt</h3>
             <p class="price">$30</p>
@@ -241,7 +241,7 @@
         <div class="store-item">
             <div class="tshirt-mockup">
                 <div class="tshirt-shape"></div>
-                <img src="/images/standard t/luma mockup shirt.jpg" alt="Luma Mockup T-Shirt" class="tshirt-art">
+                <img src="images/standard t/luma mockup shirt.jpg" alt="Luma Mockup T-Shirt" class="tshirt-art">
             </div>
             <h3>Luma Mockup T-Shirt</h3>
             <p class="price">$30</p>
@@ -262,7 +262,7 @@
         canvas.height = window.innerHeight;
 
         const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        const fontSize = 16;
+        const fontSize = 12; // Smaller font size for background text
         const columns = canvas.width / fontSize;
 
         const drops = Array.from({ length: columns }).fill(1);
