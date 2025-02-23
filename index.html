@@ -27,54 +27,32 @@
             flex-direction: column;
             justify-content: center; /* Center vertically */
             align-items: center; /* Center horizontally */
+            overflow: hidden; /* Prevent scrollbars */
         }
 
-        /* Matrix background animation (exact CodePen style) */
-        .matrix-background {
-            position: absolute;
+        canvas {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            pointer-events: none; /* Ensure it doesn’t interfere with clicks */
-            opacity: 0.5; /* Adjusted for readability, per CodePen */
+            z-index: -1; /* Place canvas behind other elements */
         }
 
-        .matrix-text {
-            position: absolute;
-            font-family: 'Courier New', monospace;
-            font-size: 16px; /* Exact CodePen size */
-            color: #0f0; /* Bright green, matching CodePen */
-            text-shadow: 0 0 2px rgba(0, 255, 0, 0.8); /* Subtle glow, per CodePen */
-            animation: fall 5s linear infinite; /* Slower fall, per CodePen */
-        }
-
-        @keyframes fall {
-            0% { top: -50px; opacity: 1; }
-            100% { top: 100vh; opacity: 0; }
-        }
-
-        /* Glitch header animation */
         .glitch {
             font-size: 5em;
             font-weight: bold;
-            position: relative;
-            animation: glitchEffect 2s linear infinite;
-            z-index: 1; /* Above Matrix background */
-            margin-bottom: 20px; /* Space below header */
-            color: #0f0; /* Match Matrix green for consistency */
+            animation: glitch 2s infinite;
         }
 
-        @keyframes glitchEffect {
-            0% { text-shadow: 2px 2px #0f0, -2px -2px #0f0; }
-            25% { text-shadow: -2px -2px #007700, 2px 2px #007700; }
-            50% { text-shadow: 2px -2px #0f0, -2px 2px #0f0; }
-            75% { text-shadow: -2px 2px #007700, 2px -2px #007700; }
-            100% { text-shadow: 2px 2px #0f0, -2px -2px #0f0; }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px #00ff00; }
+            25% { text-shadow: -2px -2px #007700; }
+            50% { text-shadow: 2px -2px #00ff00; }
+            75% { text-shadow: -2px 2px #007700; }
+            100% { text-shadow: 2px 2px #00ff00; }
         }
 
-        /* Main content */
         .store {
             max-width: 1200px;
             margin: 0 auto;
@@ -242,6 +220,7 @@
     </style>
 </head>
 <body>
+    <canvas id="matrix"></canvas>
     <h1 class="glitch">PAINT.EXE Merch</h1>
     <p>Edgy, raw, and digital chaos on fabric & collectibles.</p>
     
@@ -274,33 +253,40 @@
         <p>Follow us: <a href="https://instagram.com">Instagram</a> <a href="https://twitter.com">Twitter</a></p>
     </footer>
 
-    <!-- Matrix Animation Script (Exact CodePen Style) -->
+    <!-- Matrix Animation Script -->
     <script>
-        window.onload = function() {
-            const matrix = document.createElement('div');
-            matrix.className = 'matrix-background';
-            document.body.appendChild(matrix);
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
 
-            function createMatrixStream() {
-                const stream = document.createElement('div');
-                stream.className = 'matrix-text';
-                const chars = '01'; // Exact CodePen binary characters
-                let text = '';
-                for (let i = 0; i < 20; i++) { // Longer streams for density, per CodePen
-                    text += chars.charAt(Math.floor(Math.random() * chars.length)) + '\n';
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const drops = Array.from({ length: columns }).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff00';
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
                 }
-                stream.textContent = text;
-                stream.style.left = Math.random() * 100 + 'vw';
-                stream.style.animationDelay = Math.random() * 5 + 's'; // Exact CodePen delay
-                matrix.appendChild(stream);
 
-                // Remove after animation to prevent memory leak
-                stream.addEventListener('animationend', () => stream.remove());
+                drops[i]++;
             }
+        }
 
-            // Create more streams for higher density, per CodePen
-            setInterval(createMatrixStream, 100); // Slower interval for exact CodePen pacing
-        };
+        setInterval(draw, 33);
     </script>
 </body>
 </html>
