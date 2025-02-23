@@ -213,31 +213,31 @@
                 font-size: 10px;
             }
         }
-
-        /* JavaScript for Matrix animation */
-        <script>
-            window.onload = function() {
-                const matrix = document.createElement('div');
-                matrix.className = 'matrix-background';
-                document.body.appendChild(matrix);
-
-                function createMatrixCharacter() {
-                    const char = document.createElement('div');
-                    char.className = 'matrix';
-                    char.textContent = String.fromCharCode(65 + Math.random() * 57); // Random alphanumeric chars
-                    char.style.left = Math.random() * 100 + 'vw';
-                    char.style.animationDelay = Math.random() * 5 + 's';
-                    matrix.appendChild(char);
-
-                    // Remove after animation to prevent memory leak
-                    char.addEventListener('animationend', () => char.remove());
-                }
-
-                // Create multiple characters for density
-                setInterval(createMatrixCharacter, 100);
-            };
-        </script>
     </style>
+
+    <!-- JavaScript for Matrix animation -->
+    <script>
+        window.onload = function() {
+            const matrix = document.createElement('div');
+            matrix.className = 'matrix-background';
+            document.body.appendChild(matrix);
+
+            function createMatrixCharacter() {
+                const char = document.createElement('div');
+                char.className = 'matrix';
+                char.textContent = String.fromCharCode(65 + Math.random() * 57); // Random alphanumeric chars
+                char.style.left = Math.random() * 100 + 'vw';
+                char.style.animationDelay = Math.random() * 5 + 's';
+                matrix.appendChild(char);
+
+                // Remove after animation to prevent memory leak
+                char.addEventListener('animationend', () => char.remove());
+            }
+
+            // Create multiple characters for density
+            setInterval(createMatrixCharacter, 100);
+        };
+    </script>
 </head>
 <body>
     <h1 class="glitch">PAINT.EXE Merch</h1>
