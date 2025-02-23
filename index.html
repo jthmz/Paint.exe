@@ -118,10 +118,10 @@
 
         .tshirt-art {
             position: absolute;
-            top: 15%; /* Adjusted for larger mockup */
-            left: 20%; /* Adjusted for larger mockup */
-            width: 60%; /* Slightly larger art */
-            height: 60%; /* Slightly larger art */
+            top: 10%; /* Adjusted for larger mockup */
+            left: 10%; /* Adjusted for larger mockup */
+            width: 80%; /* Larger art */
+            height: 80%; /* Larger art */
             object-fit: contain;
             filter: drop-shadow(0 0 12px #0f0); /* Larger glow in Matrix green */
             z-index: 2;
@@ -214,7 +214,7 @@
             }
 
             .matrix-text {
-                font-size: 12px;
+                font-size: 10px; /* Smaller font size for matrix text */
             }
         }
     </style>
@@ -258,21 +258,23 @@
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
 
-        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        const fontSize = 12; // Smaller font size for background text
+        const matrix = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const letters = matrix.split("");
+
+        const fontSize = 10; // Smaller font size for background text
         const columns = canvas.width / fontSize;
 
         const drops = Array.from({ length: columns }).fill(1);
 
         function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = '#00ff00';
-            ctx.font = `${fontSize}px monospace`;
+            ctx.font = `${fontSize}px arial`;
 
             for (let i = 0; i < drops.length; i++) {
                 const text = letters[Math.floor(Math.random() * letters.length)];
@@ -286,7 +288,7 @@
             }
         }
 
-        setInterval(draw, 33);
+        setInterval(draw, 35);
     </script>
 </body>
 </html>
